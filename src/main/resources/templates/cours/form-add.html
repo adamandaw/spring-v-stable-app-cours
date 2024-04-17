@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layouts/form-create-session-cours-layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Planification d'un cours</title>
+</head>
+<body>
+<div class="container mt-4"  layout:fragment="theContentForm">
+    <h1>Planification d'un cours</h1>
+    <form method="POST" th:action="@{/save/cours}"
+    th:object="${cours}">
+        <div class="form-group">
+            <label for="semestre">Choisissez un semestre :</label>
+            <select class="form-control" id="semestre" name="semestre" >
+                <option></option>
+                <option th:each="sem :${semestres}"
+                        th:value="${sem.id}"
+                        th:text="${sem.libelle}"
+                        th:field="*{semestre}"
+                ></option>
+            </select>
+            <small class="form-text text-danger" th:if="${ mode=='error' && errors.containsKey('semestre')}"
+                   th:text="${errors.get('semestre')}"></small>
+        </div>
+
+        <div class="form-group">
+
+            <label for="module">Choisissez un module :</label>
+            <select class="form-control" id="module" name="module" >
+                <option></option>
+                <option th:each="module :${modules}"
+                        th:value="${module.id}"
+                        th:text="${module.libelle}"
+                        th:field="*{module}">
+                </option>
+            </select>
+            <small class="form-text text-danger" th:if="${ mode=='error' && errors.containsKey('module')}"
+                   th:text="${errors.get('module')}"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="module">Choisissez un professeur :</label>
+            <select class="form-control" id="prof" name="professeur" >
+                <option></option>
+                <option th:each="prof :${professeurs}"
+                        th:value="${prof.id}"
+                        th:text="${prof.nomComplet}"
+                th:field="*{professeur}"></option>
+            </select>
+            <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('professeur')}"
+                   th:text="${errors.get('professeur')}"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="heure_globale">NBR GLOBALE</label>
+            <input type="number" class="form-control" id="heure_globale" placeholder="saisir" name="nbrHeureGlobal"
+            th:field="*{nbrHeureGlobal}">
+            <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('nbrHeureGlobal')}"
+                   th:text="${errors.get('nbrHeureGlobal')}"></small>
+        </div>
+        <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="settings/index">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div layout:fragment="theContentPageSetting">
+    <ul class="">
+        <li class="list-group-item">
+            <a th:href="@{/ac/setting/classe/no-active}">Planifier les classes qui seront ouvertes
+            </a>
+        </li>
+        <li class="list-group-item"><a href="#">Televerser des classes</a></li>
+        <li class="list-group-item"><a href="#">Lister les classes</a></li>
+        <!-- Ajoutez d'autres liens ici si nécessaire -->
+    </ul>
+</div>
+</body>
+</html>

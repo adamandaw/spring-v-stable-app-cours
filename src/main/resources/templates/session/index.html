@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="base">
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title">
+        Accueil | Bienvenue</title>
+    <link rel="stylesheet" th:href="@{/css/sessionDeCours/style.css}">
+    <script>
+
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(() => {
+                const zoneMsg = document.getElementsByClassName("crud-success");
+                if (zoneMsg.length > 0) {
+                    zoneMsg[0].classList.toggle("d-none");
+                }
+            }, 2000);
+        });
+    </script>
+</head>
+
+<body>
+<div layout:fragment="theContentPage">
+
+<div class="d-flex justify-content-end scale-up-center"    th:if="${crudSuccess}">
+    <span class="crud-success" th:text="${crudSuccess}"></span>
+</div>
+    <div class="d-flex justify-content-end scale-up-center"    th:if="${msg}">
+        <span class="crud-success" th:text="${msg}"></span>
+    </div>
+
+
+    <div class="mt-4">
+     <h2 th:text="${courIntegrale.libelle}"></h2>
+    </div>
+
+
+
+    <div class="mt-4">
+        <div class="card">
+            <div class="card-body">
+                <h3 class="card-title quota">*****************   Quota Horaires   *****************</h3>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th class="quota" scope="col">Heure Globale</th>
+                        <th class="quota" scope="col">Heure Planifier</th>
+                        <th  class="quota" scope="col">Heure Effectuer</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${courIntegrale.heureGlobale}"> </td>
+                        <td th:text="${courIntegrale.heurePlanifier}">h</td>
+                        <td th:text="${courIntegrale.heureEffectuer}"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div class="d-flex justify-content-end">
+                    <a th:href="@{/session/{idCours}/new(idCours=${courIntegrale.id})}" class="card-link">Nouvelle Session</a>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="mt-4">
+            <h5 class="">Listes des sessions de cours</h5>
+
+
+            <section class="articles">
+                <div th:each="chaqueSession : ${ListeDeSessions}" class="article-wrapper">
+                    <div class="tete">
+                        <!-- Contenu de la figure -->
+
+                    </div>
+                    <div class="card article-body">
+                        <p th:text="${chaqueSession.date}"></p>
+                        <div class="hours d-flex justify-content-center gap-4">
+                            <h4 th:text="${chaqueSession.debutHeure}"></h4>
+                            <h4 th:text="${chaqueSession.finHeure}"></h4>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div class="flex-column">
+                                <p class="data-text" th:text="${chaqueSession.duree}"></p>
+                                <p class="sub-title">Durée</p>
+                            </div>
+
+                            <div class="flex-column">
+                                <p class="data-text" th:text="${chaqueSession.typeSession}"></p>
+                                <p class="sub-title">Type de session</p>
+                            </div>
+                        </div>
+
+                        <div class="btn-zone d-flex flex-column justify-content-center gap-4">
+                                    <a th:href="@{/session/{id}(id=${chaqueSession.id})}" class="btn validate">
+                                    valider
+                                </a>
+                                <a th:href="@{/session/{id}/canceled(id=${chaqueSession.id})}"  class="btn canceled">
+                                    annuler
+                                </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

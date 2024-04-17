@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connectez vous </title>
+    <link type="text/css" th:href="@{/css/security/style.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+        <div class="front">
+            <img src="#" alt="img">
+            <div class="text">
+                <span class="text-1">Connectez vous pour acceder<br> à votre espace</span>
+                <span class="text-2">membre</span>
+            </div>
+        </div>
+
+    </div>
+    <div class="forms">
+        <div class="form-content">
+            <div class="login-form">
+                <div class="title">Connexion</div>
+                <div th:if="${param.error}">
+                    Invalid username and password.</div>
+                <div th:if="${param.logout}">
+                    You have been logged out.</div>
+                <form th:action="@{/login}" method="post">
+                    <div class="input-boxes">
+                        <div class="input-box">
+                            <i class="fas fa-envelope"></i>
+                            <input type="text" name="username" placeholder="Username"/>
+                        </div>
+                        <div class="input-box">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" name="password" placeholder="Password"/>
+                        </div>
+                    </div>
+
+
+                    <div class="button input-box">
+                        <input type="submit" value="Connexion">
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>

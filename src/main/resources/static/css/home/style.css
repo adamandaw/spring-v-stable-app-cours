@@ -1,0 +1,69 @@
+colors {
+    --white-color:                  #ffffff;
+    --primary-color:                #f58612;
+    --chocolat:#351f16;
+    --secondary-color:              #F1FAEE;
+    --section-bg-color:             #ececec;
+    --primary-bg-color:             #E63946;
+    --custom-btn-bg-color:          #A8DADC;
+    --custom-btn-bg-hover-color:    #1D3557;
+    --heading-color:                #1D3557;
+    --dark-color:                   #000000;
+    --p-color:                      #717275;
+    --border-color:                 #e0e0e5;
+    --link-hover-color:             #E63946;
+}
+
+#btn-make-cours{
+    all:unset;
+    background-color: var(--primary-color);
+    padding: 8px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+#btn-make-cours a{
+    all: unset;
+    color: black;
+    cursor: pointer;
+    font-weight:bold ;
+}
+#btn-make-cours:hover{
+    background-color: #f5f7f8;
+    border: 3px solid;
+    transition: 1200ms;
+    border-color: var(--primary-color);
+}
+.crud-success{
+    background-color: #02223f;
+    padding: 7px;
+    letter-spacing: 0.5px;
+    font-size: 13px;
+    border-radius: 20px;
+    color: white;
+}
+.scale-up-center {
+    -webkit-animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+    animation: scale-up-center 0.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+}
+
+@-webkit-keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+@keyframes scale-up-center {
+    0% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+}
+

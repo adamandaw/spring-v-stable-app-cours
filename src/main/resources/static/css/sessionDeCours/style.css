@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Roboto&display=swap');
+*{
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+    font-weight:400;
+    font-style: normal;
+}
+.quota,td{
+    font-weight: bold;
+    text-align: center;
+}
+.card-link{
+    background-color: orange;
+    color: white;
+    padding: 9px;
+    cursor: pointer;
+    border-radius: 6px;
+}
+.card-link:hover{
+  color: white;
+}
+article {
+    --img-scale: 1.001;
+    --title-color: black;
+    --link-icon-opacity: 0;
+    position: relative;
+    border-radius: 16px;
+    box-shadow: none;
+    background: #fff;
+    transform-origin: center;
+    transition: all 0.4s ease-in-out;
+    overflow: hidden;
+    width: 300px;
+}
+
+
+
+h4 {
+    margin: 0 0 18px 0;
+    font-family: "Bebas Neue", cursive;
+    font-size: 19px;
+    letter-spacing: 0.06em;
+    color: var(--title-color);
+    transition: color 0.3s ease-out;
+}
+
+.tete {
+    margin: 0;
+    padding: 0;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background-color: chocolate;
+
+}
+
+
+.article-body {
+    padding: 24px;
+}
+
+.btn{
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+
+}
+.validate{
+    background-color: rgba(18, 54, 245, 0.93);
+    color: white;
+    border-radius: 20px;
+}
+.canceled{
+    background-color: rgba(245, 18, 18, 0.45);
+    color: rgba(241, 51, 51, 1);
+}
+
+/* using the has() relational pseudo selector to update our custom properties */
+article:has(:hover, :focus) {
+    --img-scale: 1.1;
+    --title-color: #28666e;
+    --link-icon-translate: 0;
+    --link-icon-opacity: 1;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+
+
+/************************
+Generic layout (demo looks)
+**************************/
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+.articles {
+    display: flex;
+    justify-content: space-around;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: 24px;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 24px;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 960px) {
+    article {
+        container: card/inline-size;
+    }
+    .article-body p {
+        display: none;
+    }
+}
+
+@container card (min-width: 380px) {
+    .article-wrapper {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        gap: 16px;
+    }
+    .article-body {
+        padding-left: 0;
+    }
+    .figure {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .figure img {
+        height: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
+    }
+}
+
+.sr-only:not(:focus):not(:active) {
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+}
+.data-text{
+    font-weight: bold;
+    color: orange;
+    text-align: center;
+}
+.sub-title{
+    font-weight: bold;
+    font-size: 5.3px;
+    text-align: center;
+    color: rgba(188, 186, 186, 1);
+}

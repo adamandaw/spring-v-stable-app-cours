@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="sessionCoursServiceImpl" class="com.ism.core.services.impl.SessionCoursServiceImpl">
+        <constructor-arg index="0" ref="sessionRepository"/>
+        <constructor-arg index="1" ref="participationCoursRepository"/>
+        <constructor-arg index="2" ref="classeRepository"/>
+        <constructor-arg index="3" ref="coursRepository"/>
+        <constructor-arg index="4" ref="inscriptionRepository"/>
+        <constructor-arg index="5" ref="anneeScolaireRepository"/>
+
+    </bean>
+    <bean id="participationCoursRepository"/>
+    <bean id="sessionRepository" />
+    <bean id="classeRepository"/>
+    <bean id="coursRepository" />
+    <bean id="inscriptionRepository" />
+    <bean id="anneeScolaireRepository" />
+
+</beans>

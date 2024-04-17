@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.w3.org/1999/xhtml"
+      layout:decorate="base">
+<head>
+    <meta charset="UTF-8">
+    <title layout:fragment="title">
+        Accueil | Bienvenue</title>
+    <link rel="stylesheet" th:href="@{/css/home/style.css}">
+    <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js'></script>
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                events : [
+                    {
+                        title : "bonjour",
+                        start: '2024-04-01',
+                        end: '2024-04-02',
+
+                    }
+                ]
+            });
+            calendar.render();
+        });
+
+    </script>
+</head>
+
+<body>
+<div layout:fragment="theContentPage">
+    <div class="container d-flex justify-content-end">
+        <button id="btn-make-cours">
+            <a class="" th:href="@{cours/new}">
+                <i class="bi-house-fill me-2"></i>
+                Planifer un Cours
+            </a>
+        </button>
+    </div>
+
+    <div id='calendar'></div>
+
+    <div class="mt-4">
+        <h2 class="card-title">Listes des cours</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Module</th>
+                <th scope="col">semestre</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="unCours :${cours}">
+
+                <td th:text="${unCours.id}"></td>
+                <td>
+                    <a th:text="${unCours.libelle}" th:href="@{/cours/{id}(id=${unCours.id})}"></a>
+                </td>
+                <td th:text="${unCours.semestre}"></td>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <h1>Calendrier</h1>
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">Lundi</th>
+                <th scope="col">Mardi</th>
+                <th scope="col">Mercredi</th>
+                <th scope="col">Jeudi</th>
+                <th scope="col">Vendredi</th>
+                <th scope="col">Samedi</th>
+                <th scope="col">Dimanche</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Contenu du lundi</td>
+                <td>Contenu du mardi</td>
+                <td>Contenu du mercredi</td>
+                <td>Contenu du jeudi</td>
+                <td>Contenu du vendredi</td>
+                <td>Contenu du samedi</td>
+                <td>Contenu du dimanche</td>
+            </tr>
+            <!-- Ajoutez ici d'autres lignes pour chaque semaine du mois -->
+            </tbody>
+        </table>
+    </div>
+</div>
+</body>
+
+</html>

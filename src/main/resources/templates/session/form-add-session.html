@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="layouts/form-create-session-cours-layout"
+      xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Nouvelle session de cours</title>
+    <script th:src="@{/js/sessionCours/script.js}"></script>
+
+</head>
+<body>
+
+
+<div class="container mt-4" layout:fragment="theContentForm">
+    <h1>Nouvelle session</h1>
+    <!-- Exemple de code HTML dans votre vue -->
+    <div class="alert alert-danger" th:if="${errorDePlanification}">
+        <p th:text="${errorDePlanification}"></p>
+    </div>
+    <div class="alert alert-danger" th:if="${heureDepasse}">
+        <p th:text="${heureDepasse}"></p>
+    </div>
+    <div class="alert alert-danger" th:if="${profIndisponible}">
+        <p th:text="${profIndisponible}"></p>
+    </div>
+    <div class="d-flex justify-content-end scale-up-center"    th:if="${msg}">
+        <span class="crud-success" th:text="${msg}"></span>
+    </div>
+
+    <form th:method="POST"
+          th:object="${sessionObj}"
+          th:action="@{/session/{id}/new(id=${id})}"
+    >
+        <div class="form-group">
+            <label for="classe">Choisir classe :</label>
+            <select class="form-control" id="classe" name="participations" multiple>
+                <option th:each="uneClasse :${classes}"
+                        th:value="${uneClasse.id}"
+                        th:text="${uneClasse.libelle}"
+
+                ></option>
+
+            </select>
+            <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('participations')}"
+            th:text="${errors.get('participations')}"></small>
+        </div>
+
+        <div class="form-group" id="type">
+            <label for="typeDeSession">Type de session :</label>
+            <select class="form-control" id="typeDeSession" name="typeSession">
+                <option value="En ligne">En ligne</option>
+                <option value="En Présentiel">En Présentiel</option>
+            </select>
+        </div>
+
+        <div class="form-group"  id="salle">
+            <label for="salle">Salle</label>
+            <select class="form-control" name="salle" >
+                <option></option>
+                <option th:each="salle :${salles}"
+                        th:value="${salle.id}"
+                        th:text="${salle.libelle}"
+                        th:field="*{salle}">
+                </option>
+            </select>
+            <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('salle')}"
+                   th:text="${errors.get('salle')}"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" id="date"
+                   placeholder="Sélectionnez une date" name="date"
+                   th:field="*{date}"
+            >
+            <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('date')}"
+                   th:text="${errors.get('date')}"></small>
+        </div>
+        <div class="form-group">
+            <label for="debutHeure">Heure de début</label>
+            <input type="time" class="form-control" id="debutHeure" name="debutHeure"
+                th:field="*{debutHeure}">
+            <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('debutHeure')}"
+                   th:text="${errors.get('debutHeure')}"></small>
+        </div>
+
+        <div class="form-group">
+            <label for="finHeure">Heure de fin</label>
+            <input type="time" class="form-control" id="finHeure" name="finHeure"
+                   th:field="*{finHeure}">
+            <small class="form-text text-danger" th:if="${ mode =='error' && errors.containsKey('finHeure')}"
+                   th:text="${errors.get('finHeure')}"></small>
+        </div>
+        <button type="submit" class="btn btn-primary">Soumettre</button>
+    </form>
+</div>
+
+</body>
+
+</html>
+<script>
+    const monInput = document.getElementById("typeDeSession");
+    const  selectSalle = document.getElementById("salle")
+    selectSalle.classList.add("d-none")
+
+    monInput.addEventListener('change', function() {
+        //console.log(this.options[this.selectedIndex].value);
+        if (this.options[this.selectedIndex].value === "En Présentiel"){
+            selectSalle.classList.remove("d-none")
+        }else {
+            selectSalle.classList.toggle("d-none")
+        }
+        //
+    });
+
+</script>
